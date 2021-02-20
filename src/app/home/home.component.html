@@ -11,9 +11,9 @@
     </div>
     <div fxLayout="row" fxLayoutAlign="start center" class="nations">
         <div *ngFor="let nation of nations" class="nation-div">
-            <div fxLayout="column" (mouseover)="hilite(nation)" class="nation">
+            <div fxLayout="column" (mouseover)="hilite(nation)" (click)="click(nation)" class="nation">
                 <div>{{nation.alpha3Code}}</div>
-                <img [src]="nation.flag" alt="" draggable="false" class="image">
+                <img [src]="nation.flag" alt="" draggable="false" class="image" [ngClass]="{'activeCard': nation.selected}" >
             </div>
         </div>
     </div>
@@ -22,11 +22,11 @@
     </div>
     <div fxLayout="row" fxLayoutAlign="space-between start" class=info>
         <div class="active">
-            <div>name:</div>
-            <div>native name:</div>
-            <div>capital:</div>
-            <div>latitude:</div>
-            <div>longitude:</div>
+            <div>name: {{hilitedActiveName}}</div>
+            <div>native name: {{hilitedNativeName}}</div>
+            <div>capital: {{hilitedCapital}}</div>
+            <div>latitude: {{hilitedLatitude}}</div>
+            <div>longitude: {{hilitedLongitude}}</div>
         </div>
         <div>
             <img #flag style="border:1px dashed blue;width:320px;height:240px;">

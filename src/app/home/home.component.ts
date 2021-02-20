@@ -13,6 +13,11 @@ export class HomeComponent implements OnInit,OnDestroy
 {
     nations: Nation[] = [];
     hilitedName = '...';
+    hilitedActiveName = '';
+    hilitedNativeName = '';
+    hilitedCapital = '';
+    hilitedLatitude = '';
+    hilitedLongitude = '';
 
     constructor(
         private http:HttpClient,
@@ -29,7 +34,24 @@ export class HomeComponent implements OnInit,OnDestroy
 
     hilite( nation:Nation ) {
         this.hilitedName = nation.name;
+        
+
         this.changeDetectorRef.detectChanges();
+    }
+
+    click( nation:Nation ) {
+        let selected  = this.nations.filter(n => n.selected)[0];
+        if (selected !== undefined){
+            selected.selected = false;
+        }
+
+        this.hilitedActiveName = nation.name;
+        this.hilitedNativeName = nation.nativeName;
+        this.hilitedCapital = nation.capital;
+        this.hilitedLatitude = nation.latlng[1];
+        this.hilitedLongitude = nation.latlng[0];
+        
+        nation.selected = true;
     }
 
     ngOnDestroy(): void {
