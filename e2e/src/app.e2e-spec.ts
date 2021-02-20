@@ -8,9 +8,14 @@ describe('workspace-project App', () => {
     page = new AppPage();
   });
 
-  it('should display welcome message', () => {
+  //it('should display welcome message', () => {
+  //  page.navigateTo();
+  //  expect(page.getTitleText()).toEqual('basic app is running!');
+  //});
+
+  it('should have 250 countries', () => {
     page.navigateTo();
-    expect(page.getTitleText()).toEqual('basic app is running!');
+    expect(page.countCountries()).toEqual(250);
   });
 
   afterEach(async () => {
@@ -20,4 +25,6 @@ describe('workspace-project App', () => {
       level: logging.Level.SEVERE,
     } as logging.Entry));
   });
+
+  
 });
